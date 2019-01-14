@@ -107,7 +107,7 @@ function get_autor($id)
 {
     global $connection;
 
-    $query_bares = 'SELECT * FROM Bar WHERE id = '.$id;
+    $query_bares = 'SELECT * FROM bar WHERE id = '.$id;
 
     $respuesta = array();
     $resultado = mysqli_query($connection, $query_bares);
@@ -159,7 +159,7 @@ function insertar_autor()
     $direccion_sucursal = utf8_decode($data['direccion_sucursal']);
 
     $query = '
-        INSERT INTO Bar 
+        INSERT INTO bar 
         SET 
             nombre = "'.$nombre.'",
             nombre_sucursal = "'.$nombre_sucursal.'",
@@ -196,7 +196,7 @@ function actualizar_autor($id)
     $nombre_sucursal = $post_vars['nombre_sucursal'];
     $direccion_sucursal = $post_vars['direccion_sucursal'];
     $query = '
-        UPDATE Bar
+        UPDATE bar
         SET
             nombre = "'.$nombre.'", 
             nombre_sucursal = "'.$nombre_sucursal.'",
@@ -228,7 +228,7 @@ function eliminar_autor($id)
 
     global $connection;
     
-    $query = 'DELETE FROM Bar WHERE id = '.$id;
+    $query = 'DELETE FROM bar WHERE id = '.$id;
     
 	if (mysqli_query($connection, $query))
 	{

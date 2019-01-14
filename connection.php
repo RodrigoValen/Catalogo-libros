@@ -7,7 +7,7 @@ class dbObj
     var $servername = 'localhost';
     var $username = 'root';
     var $password = '';
-    var $dbname = 'Mantenedores';
+    var $dbname = 'mantenedores';
     var $conn;
 
     function getConnstring() 
