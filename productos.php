@@ -107,7 +107,7 @@ function get_autor($id)
 {
     global $connection;
 
-    $query_bares = 'SELECT * FROM bar WHERE id = '.$id;
+    $query_bares = 'SELECT * FROM cerveza WHERE id = '.$id;
 
     $respuesta = array();
     $resultado = mysqli_query($connection, $query_bares);
@@ -116,13 +116,11 @@ function get_autor($id)
     {
            $respuesta[] = array(
             'id' => $item['id'],
-            'nombre' => utf8_decode($item['nombre']),
-            'nombre_sucursal' => utf8_decode($item['nombre_sucursal']),
-            'direccion_sucursal' => utf8_decode($item['direccion_sucursal'])
+            'nombre' => utf8_decode($item['nombre'])
         );
     }
     header('Content-Type: application/json');
-    echo json_encode(array('autores' => $respuesta));
+    echo json_encode(array('cerveza' => $respuesta));
 
 }
 
@@ -144,7 +142,7 @@ function get_autores()
     }
 
     header('Content-Type: application/json');
-    echo json_encode(array('autores' => $respuesta));
+    echo json_encode(array('cerveza' => $respuesta));
 
 }
 
@@ -155,15 +153,13 @@ function insertar_autor()
     $data = json_decode(file_get_contents('php://input'), true);
 
     $nombre = utf8_decode($data['nombre']);
-    $nombre_sucursal = utf8_decode($data['nombre_sucursal']);
-    $direccion_sucursal = utf8_decode($data['direccion_sucursal']);
+    
 
     $query = '
-        INSERT INTO bar 
+        INSERT INTO cerveza 
         SET 
-            nombre = "'.$nombre.'",
-            nombre_sucursal = "'.$nombre_sucursal.'",
-            direccion_sucursal = "'.$direccion_sucursal.'"
+            nombre = "'.$nombre.'"
+            
     ';
 
     if (mysqli_query($connection, $query))
@@ -193,28 +189,25 @@ function actualizar_autor($id)
     $post_vars = json_decode(file_get_contents('php://input'), true);
 
     $nombre = $post_vars['nombre'];
-    $nombre_sucursal = $post_vars['nombre_sucursal'];
-    $direccion_sucursal = $post_vars['direccion_sucursal'];
+    
     $query = '
-        UPDATE bar
+        UPDATE cerveza
         SET
-            nombre = "'.$nombre.'", 
-            nombre_sucursal = "'.$nombre_sucursal.'",
-            direccion_sucursal = "'.$direccion_sucursal.'"
+            nombre = "'.$nombre.'"
         WHERE id = '.$id;
 
     if(mysqli_query($connection, $query))
     {
         $response = array(
             'status' => 1,
-            'status_message' =>'Bar actualizado satisfactoriamente.'
+            'status_message' =>'Producto actualizado satisfactoriamente.'
         );
     }
     else
     {
         $response = array(
             'status' => 0,
-            'status_message' =>'No se pudo actualizar el Bar.'
+            'status_message' =>'No se pudo actualizar el producto.'
         );
     }
 
@@ -228,20 +221,20 @@ function eliminar_autor($id)
 
     global $connection;
     
-    $query = 'DELETE FROM bar WHERE id = '.$id;
+    $query = 'DELETE FROM cerveza WHERE id = '.$id;
     
     if (mysqli_query($connection, $query))
     {
         $response = array(
             'status' => 1,
-            'status_message' =>'Autor eliminado existosamente.'
+            'status_message' =>'Producto eliminado existosamente.'
         );
     }
     else
     {
         $response = array(
             'status' => 0,
-            'status_message' => 'No se pudo eliminar el autor.'
+            'status_message' => 'No se pudo eliminar el producto.'
         );
     }
     
