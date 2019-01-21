@@ -23,7 +23,7 @@ class Auth
         // Se verifican las credenciales contra la BD.
 
         $query_usuario = '
-            SELECT * FROM usuario
+            SELECT * FROM usuarios
             WHERE 
                 nombre = "'.$user.'"
                 AND password = "'.$pass.'"

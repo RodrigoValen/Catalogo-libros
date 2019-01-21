@@ -138,7 +138,7 @@ function get_autores()
     {
 
         $respuesta[] = array(
-            'id' => $item['id'],
+            'id' => $item['id_bar'],
             'nombre' => utf8_decode($item['nombre']),
             'nombre_sucursal' => utf8_decode($item['nombre_sucursal']),
             'direccion_sucursal' => utf8_decode($item['direccion_sucursal'])

@@ -142,3 +142,8 @@ CREATE TABLE IF NOT EXISTS registro (
     PRIMARY KEY (id_registro)
 );
  
+ INSERT INTO `bar` (`id_bar`, `nombre`, `nombre_sucursal`, `direccion_sucursal`) 
+ VALUES ('1', 'Ramblas', 'Providencia', 'Av. Manuel Montt 370');
+
+ INSERT INTO `usuarios` (`id_usuario`, `id_bar`, `nombre`, `password`, `correo`, `tipo`) 
+ VALUES ('1', '1', 'rodrigo', '0401', 'rvalenzuelagu@gmail.com', 'W');
