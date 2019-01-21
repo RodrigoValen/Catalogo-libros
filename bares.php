@@ -32,13 +32,13 @@ switch($request_method)
 
     case 'GET':
     
-        if (!empty($_GET["id"]))
+        if (!empty($_GET["id_bar"]))
         {
 
             // endpoint : GET /bares.php/{id}
             // Obtiene la información delautor dado el $id.
 
-            $id = intval($_GET["id"]);
+            $id = intval($_GET["id_bar"]);
             get_autor($id);
 
         }
@@ -68,7 +68,7 @@ switch($request_method)
         // responde a endpoint : PUT /autores/{id}
         // actualiza el autor dado el {id}.
     
-        $id = intval($_GET['id']);
+        $id = intval($_GET['id_bar']);
 
         if ($id == 0)
             header("HTTP/1.0 405 Method Not Allowed");
@@ -86,7 +86,7 @@ switch($request_method)
         // responde a endpoint : DELETE /autores/{id}
         // elimina el autor dado el {id}.
 
-	$id = intval($_GET['id']);
+	$id = intval($_GET['id_bar']);
 
         if ($id == 0)
             header("HTTP/1.0 405 Method Not Allowed");
@@ -107,7 +107,7 @@ function get_autor($id)
 {
     global $connection;
 
-    $query_bares = 'SELECT * FROM bar WHERE id = '.$id;
+    $query_bares = 'SELECT * FROM bar WHERE id_bar = '.$id;
 
     $respuesta = array();
     $resultado = mysqli_query($connection, $query_bares);
@@ -115,7 +115,7 @@ function get_autor($id)
     while ($item = mysqli_fetch_array($resultado))
     {
            $respuesta[] = array(
-            'id' => $item['id'],
+            'id' => $item['id_bar'],
             'nombre' => utf8_decode($item['nombre']),
             'nombre_sucursal' => utf8_decode($item['nombre_sucursal']),
             'direccion_sucursal' => utf8_decode($item['direccion_sucursal'])
@@ -202,7 +202,7 @@ function actualizar_autor($id)
             nombre = "'.$nombre.'", 
             nombre_sucursal = "'.$nombre_sucursal.'",
             direccion_sucursal = "'.$direccion_sucursal.'"
-        WHERE id = '.$id;
+        WHERE id_bar = '.$id;
 
     if(mysqli_query($connection, $query))
     {
@@ -229,7 +229,7 @@ function eliminar_autor($id)
 
     global $connection;
     
-    $query = 'DELETE FROM bar WHERE id = '.$id;
+    $query = 'DELETE FROM bar WHERE id_bar = '.$id;
     
 	if (mysqli_query($connection, $query))
 	{
