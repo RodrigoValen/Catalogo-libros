@@ -142,8 +142,14 @@ CREATE TABLE IF NOT EXISTS registro (
     PRIMARY KEY (id_registro)
 );
  
- INSERT INTO `bar` (`id_bar`, `nombre`, `nombre_sucursal`, `direccion_sucursal`) 
- VALUES ('1', 'Ramblas', 'Providencia', 'Av. Manuel Montt 370');
+INSERT INTO `bar` (`id_bar`, `nombre`, `nombre_sucursal`, `direccion_sucursal`) 
+VALUES ('1', 'Ramblas', 'Providencia', 'Av. Manuel Montt 370');
 
- INSERT INTO `usuarios` (`id_usuario`, `id_bar`, `nombre`, `password`, `correo`, `tipo`) 
- VALUES ('1', '1', 'rodrigo', '0401', 'rvalenzuelagu@gmail.com', 'W');
+INSERT INTO `usuarios` (`id_usuario`, `id_bar`, `nombre`, `password`, `correo`, `tipo`) 
+VALUES ('1', '1', 'rodrigo', '0401', 'rvalenzuelagu@gmail.com', 'W');
+
+INSERT INTO `cerveceria` (`id_cerveceria`, `nombre`) 
+VALUES ('1', 'Kross'), ('2', 'Rothhammer');
+
+INSERT INTO `producto` (`id_producto`, `nombre`, `fecha_elaboracion`, `fecha_expiracion`, `cantidad`)
+VALUES ('1', 'Ambar', '2019-01-21', '2019-01-31', '50');

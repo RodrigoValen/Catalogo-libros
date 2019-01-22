@@ -32,13 +32,13 @@ switch($request_method)
 
     case 'GET':
     
-        if (!empty($_GET["id"]))
+        if (!empty($_GET["id_producto"]))
         {
 
             // endpoint : GET /autores/{id}
             // Obtiene la información delautor dado el $id.
 
-            $id = intval($_GET["id"]);
+            $id = intval($_GET["id_producto"]);
             get_autor($id);
 
         }
@@ -68,7 +68,7 @@ switch($request_method)
         // responde a endpoint : PUT /autores/{id}
         // actualiza el autor dado el {id}.
     
-        $id = intval($_GET['id']);
+        $id = intval($_GET['id_producto']);
 
         if ($id == 0)
             header("HTTP/1.0 405 Method Not Allowed");
@@ -86,7 +86,7 @@ switch($request_method)
         // responde a endpoint : DELETE /autores/{id}
         // elimina el autor dado el {id}.
 
-    $id = intval($_GET['id']);
+    $id = intval($_GET['id_producto']);
 
         if ($id == 0)
             header("HTTP/1.0 405 Method Not Allowed");
@@ -107,7 +107,7 @@ function get_autor($id)
 {
     global $connection;
 
-    $query_bares = 'SELECT * FROM cerveza WHERE id = '.$id;
+    $query_bares = 'SELECT * FROM producto WHERE id_producto = '.$id;
 
     $respuesta = array();
     $resultado = mysqli_query($connection, $query_bares);
@@ -115,7 +115,7 @@ function get_autor($id)
     while ($item = mysqli_fetch_array($resultado))
     {
            $respuesta[] = array(
-            'id' => $item['id'],
+            'id' => $item['id_producto'],
             'nombre' => utf8_decode($item['nombre'])
         );
     }
@@ -128,7 +128,7 @@ function get_autores()
 {
 
     global $connection;
-    $query_autores = 'SELECT * FROM cerveza';
+    $query_autores = 'SELECT * FROM producto';
 
     $respuesta = array();
     $resultado = mysqli_query($connection, $query_autores);
@@ -136,7 +136,7 @@ function get_autores()
     {
 
         $respuesta[] = array(
-            'id' => $item['id'],
+            'id' => $item['id_producto'],
             'nombre' => utf8_decode($item['nombre'])
         );
     }
@@ -156,7 +156,7 @@ function insertar_autor()
     
 
     $query = '
-        INSERT INTO cerveza 
+        INSERT INTO producto 
         SET 
             nombre = "'.$nombre.'"
             
@@ -191,10 +191,10 @@ function actualizar_autor($id)
     $nombre = $post_vars['nombre'];
     
     $query = '
-        UPDATE cerveza
+        UPDATE producto
         SET
             nombre = "'.$nombre.'"
-        WHERE id = '.$id;
+        WHERE id_producto = '.$id;
 
     if(mysqli_query($connection, $query))
     {
@@ -221,7 +221,7 @@ function eliminar_autor($id)
 
     global $connection;
     
-    $query = 'DELETE FROM cerveza WHERE id = '.$id;
+    $query = 'DELETE FROM producto WHERE id_producto = '.$id;
     
     if (mysqli_query($connection, $query))
     {
