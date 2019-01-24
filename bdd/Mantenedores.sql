@@ -1,5 +1,5 @@
 
-DROP DATABASE if EXISTS Cerveza_Artesanal
+DROP DATABASE if EXISTS Cerveza_Artesanal;
 
 CREATE DATABASE IF NOT EXISTS Cerveza_Artesanal;
 USE Cerveza_Artesanal;
@@ -130,26 +130,37 @@ CREATE TABLE IF NOT EXISTS consumidor_Bar (
 
 CREATE TABLE IF NOT EXISTS registro (
 	id_registro INT NOT NULL AUTO_INCREMENT,
-    nombre_sucursal INT NOT NULL,
+    id_bar INT NOT NULL,
+    id_cerveceria INT NOT NULL,
+    id_producto INT NOT NULL,
+    fecha_registro DATETIME,
     factura INT NOT NULL,
     receptor VARCHAR (250),
     linea INT,
-    fecha_elaboración DATE,
+    fecha_elaboracion DATE,
     fecha_vencimiento DATE,
-    cerveceria VARCHAR(250),
     tipo_barril VARCHAR(250),
-    etiqueta INT
-    PRIMARY KEY (id_registro)
+    etiqueta INT,
+    PRIMARY KEY (id_registro),
+    FOREIGN KEY (id_bar) REFERENCES bar(id_bar),
+    FOREIGN KEY (id_cerveceria) REFERENCES cerveceria(id_cerveceria),
+    FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
+
 );
- 
-INSERT INTO `bar` (`id_bar`, `nombre`, `nombre_sucursal`, `direccion_sucursal`) 
+
+INSERT INTO `bar` (`id_bar`, `nombre`, `nombre_sucursal`, `direccion_sucursal`)
 VALUES ('1', 'Ramblas', 'Providencia', 'Av. Manuel Montt 370');
 
-INSERT INTO `usuarios` (`id_usuario`, `id_bar`, `nombre`, `password`, `correo`, `tipo`) 
+INSERT INTO `usuarios` (`id_usuario`, `id_bar`, `nombre`, `password`, `correo`, `tipo`)
 VALUES ('1', '1', 'rodrigo', '0401', 'rvalenzuelagu@gmail.com', 'W');
 
-INSERT INTO `cerveceria` (`id_cerveceria`, `nombre`) 
+INSERT INTO `cerveceria` (`id_cerveceria`, `nombre`)
 VALUES ('1', 'Kross'), ('2', 'Rothhammer');
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `fecha_elaboracion`, `fecha_expiracion`, `cantidad`)
 VALUES ('1', 'Ambar', '2019-01-21', '2019-01-31', '50');
+
+INSERT INTO `registro` (`id_registro`, `id_bar`, `id_cerveceria`, `id_producto`, `fecha_registro`,
+`factura`, `receptor`, `linea`, `fecha_elaboracion`, `fecha_vencimiento`, `tipo_barril`, `etiqueta`)
+VALUES ('1', '1', '2', '1', '2019-01-24 07:15:17', '123', 'Rodrigo Valenzuela', '1', '2019-01-24',
+'2019-01-31', '50', '1233');
