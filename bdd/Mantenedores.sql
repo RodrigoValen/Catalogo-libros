@@ -35,8 +35,6 @@ CREATE TABLE  bar (
     nombre varchar(250),
     nombre_sucursal varchar(250),
     direccion_sucursal varchar(250),
-    id_barril int not null,
-    foreign key (id_barril) references barril(id_barril),
     PRIMARY KEY (id_bar)
 );
 

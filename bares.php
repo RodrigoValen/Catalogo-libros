@@ -118,8 +118,7 @@ function get_autor($id)
             'id' => $item['id_bar'],
             'nombre' => utf8_decode($item['nombre']),
             'nombre_sucursal' => utf8_decode($item['nombre_sucursal']),
-            'direccion_sucursal' => utf8_decode($item['direccion_sucursal']),
-            'id_barirl'=> utf8_decode($item['id_barril'])
+            'direccion_sucursal' => utf8_decode($item['direccion_sucursal'])
         );
     }
     header('Content-Type: application/json');
@@ -142,8 +141,7 @@ function get_autores()
             'id' => $item['id_bar'],
             'nombre' => utf8_decode($item['nombre']),
             'nombre_sucursal' => utf8_decode($item['nombre_sucursal']),
-            'direccion_sucursal' => utf8_decode($item['direccion_sucursal']),
-            'id_barirl'=> utf8_decode($item['id_barril'])
+            'direccion_sucursal' => utf8_decode($item['direccion_sucursal'])
         );
     }
 
@@ -159,15 +157,14 @@ function insertar_autor()
     $nombre = utf8_decode($data['nombre']);
     $nombre_sucursal = utf8_decode($data['nombre_sucursal']);
     $direccion_sucursal = utf8_decode($data['direccion_sucursal']);
-    $id_barril = utf8_decode($data['id_barril']);
+   
 
     $query = '
         INSERT INTO bar 
         SET 
             nombre = "'.$nombre.'",
             nombre_sucursal = "'.$nombre_sucursal.'",
-            direccion_sucursal = "'.$direccion_sucursal.'",
-            id_barirl = "'.$id_barril.'"
+            direccion_sucursal = "'.$direccion_sucursal.'"
     ';
     //print_r($query);
 
@@ -200,14 +197,13 @@ function actualizar_autor($id)
     $nombre = $post_vars['nombre'];
     $nombre_sucursal = $post_vars['nombre_sucursal'];
     $direccion_sucursal = $post_vars['direccion_sucursal'];
-    $id_barril=$post_vars['id_barril'];
+   
     $query = '
         UPDATE bar
         SET
             nombre = "'.$nombre.'", 
             nombre_sucursal = "'.$nombre_sucursal.'",
-            direccion_sucursal = "'.$direccion_sucursal.'",
-            id_barril= "'.$id_barril.'"
+            direccion_sucursal = "'.$direccion_sucursal.'"
         WHERE id_bar = '.$id;
 
     if(mysqli_query($connection, $query))
