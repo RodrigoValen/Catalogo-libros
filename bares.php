@@ -166,7 +166,8 @@ function insertar_autor()
             nombre_sucursal = "'.$nombre_sucursal.'",
             direccion_sucursal = "'.$direccion_sucursal.'"
     ';
-    //print_r($query);
+    
+
 
     if (mysqli_query($connection, $query))
     {

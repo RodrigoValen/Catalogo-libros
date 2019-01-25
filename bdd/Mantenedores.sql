@@ -37,10 +37,6 @@ CREATE TABLE  bar (
     direccion_sucursal varchar(250),
     PRIMARY KEY (id_bar)
 );
-
-
-
-
 CREATE TABLE  distribuidor (
 	id_distribuidor int NOT NULL AUTO_INCREMENT,
     nombre varchar(250),
@@ -71,9 +67,8 @@ id_balanza int not null,
 fecha datetime,
 hora time,
 peso_inicial int,
-
 primary key(id_pinchado),
-foreign key(id_barril) references barril(id_barril9),
+foreign key(id_barril) references barril(id_barril),
 foreign key (id_balanza) references balanza(id_balanza)
 );
 
@@ -143,8 +138,8 @@ CREATE TABLE IF NOT EXISTS consumidor_Bar (
 );
 
 
-CREATE TABLE IF NOT EXISTS recepcion (
-	id_recepcion INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS registro (
+	id_registro INT NOT NULL AUTO_INCREMENT,
     id_bar INT NOT NULL,
     id_cerveceria INT NOT NULL,
     id_producto INT NOT NULL,
@@ -156,7 +151,7 @@ CREATE TABLE IF NOT EXISTS recepcion (
     fecha_vencimiento DATE,
     tipo_barril VARCHAR(250),
     etiqueta INT,
-    PRIMARY KEY (id_recepcion),
+    PRIMARY KEY (id_registro),
     FOREIGN KEY (id_bar) REFERENCES bar(id_bar),
     FOREIGN KEY (id_cerveceria) REFERENCES cerveceria(id_cerveceria),
     FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
