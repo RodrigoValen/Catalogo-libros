@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS consumo (
     fecha date,
     hora datetime,
     PRIMARY KEY (id_consumo),
-    FOREIGN KEY (id_barril) REFERENCES balanza(id_barril),
+    FOREIGN KEY (id_barril) REFERENCES barril(id_barril),
     FOREIGN KEY (id_balanza) REFERENCES balanza(id_balanza)
     
 );
@@ -167,8 +167,8 @@ VALUES ('1', '1', 'rodrigo', '0401', 'rvalenzuelagu@gmail.com', 'W');
 INSERT INTO `cerveceria` (`id_cerveceria`, `nombre`)
 VALUES ('1', 'Kross'), ('2', 'Rothhammer');
 
-INSERT INTO `producto` (`id_producto`, `nombre`, `fecha_elaboracion`, `fecha_expiracion`, `cantidad`)
-VALUES ('1', 'Ambar', '2019-01-21', '2019-01-31', '50');
+INSERT INTO `producto` (`id_producto`, `nombre`, `familia`) 
+VALUES ('1', 'Ambar', 'Lager'), ('2', 'Negra', 'Stout');
 
 INSERT INTO `registro` (`id_registro`, `id_bar`, `id_cerveceria`, `id_producto`, `fecha_registro`,
 `factura`, `receptor`, `linea`, `fecha_elaboracion`, `fecha_vencimiento`, `tipo_barril`, `etiqueta`)
