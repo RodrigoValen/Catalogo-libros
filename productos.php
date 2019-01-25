@@ -116,7 +116,8 @@ function get_autor($id)
     {
            $respuesta[] = array(
             'id' => $item['id_producto'],
-            'nombre' => utf8_decode($item['nombre'])
+            'nombre' => utf8_decode($item['nombre']),
+            'familia' => utf8_decode($item['familia'])
         );
     }
     header('Content-Type: application/json');
@@ -137,7 +138,8 @@ function get_autores()
 
         $respuesta[] = array(
             'id' => $item['id_producto'],
-            'nombre' => utf8_decode($item['nombre'])
+            'nombre' => utf8_decode($item['nombre']),
+            'familia' => utf8_decode($item['familia'])
         );
     }
 
@@ -153,12 +155,14 @@ function insertar_autor()
     $data = json_decode(file_get_contents('php://input'), true);
 
     $nombre = utf8_decode($data['nombre']);
+    $familia = utf8_decode($data['familia']);
     
 
     $query = '
         INSERT INTO producto 
         SET 
-            nombre = "'.$nombre.'"
+            nombre = "'.$nombre.'",
+            familia= "'.$familia.'"
             
     ';
 
@@ -189,11 +193,13 @@ function actualizar_autor($id)
     $post_vars = json_decode(file_get_contents('php://input'), true);
 
     $nombre = $post_vars['nombre'];
+    $familia = $post_vars['familia'];
     
     $query = '
         UPDATE producto
         SET
-            nombre = "'.$nombre.'"
+             nombre = "'.$nombre.'",
+            familia = "'.$familia.'"
         WHERE id_producto = '.$id;
 
     if(mysqli_query($connection, $query))
