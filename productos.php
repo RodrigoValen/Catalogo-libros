@@ -170,7 +170,7 @@ function insertar_autor()
     {
         $response = array(
             'status' => 1,
-            'status_message' =>'Autor ingresado correctamente.'
+            'status_message' =>'Producto ingresado correctamente.'
         );
     }
     else
